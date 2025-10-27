@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informações do Funcionário</title>
+</head>
+<body>
+  <h2>Cadastro de Funcionário</h2>
+
+  <!-- Campos para o usuário digitar -->
+  <label for="nome">Nome do Funcionário:</label>
+  <input type="text" id="nome" placeholder="Digite o nome"><br><br>
+
+  <label for="salario">Salário (use ponto ou vírgula):</label>
+  <input type="text" id="salario" placeholder="Ex: 2467.50"><br><br>
+
+  <button onclick="mostrarMensagem()">Mostrar Informações</button>
+
+  <p id="resultado"></p>
+
+  <script>
+    // Função que executa quando o botão é clicado
+    function mostrarMensagem() {
+      // Lê o nome e o salário digitados
+      let nome = document.getElementById("nome").value;
+      let salarioTexto = document.getElementById("salario").value;
+
+      // Troca vírgula por ponto, se houver
+      salarioTexto = salarioTexto.replace(",", ".");
+
+      // Converte o valor para número decimal
+      let salario = parseFloat(salarioTexto);
+
+      // Verifica se o valor é válido
+      if (isNaN(salario)) {
+        document.getElementById("resultado").innerText = 
+          "Valor de salário inválido. Por favor, digite um número válido.";
+        return;
+      }
+
+      // Formata o salário com duas casas decimais e vírgula
+      let salarioFormatado = salario.toFixed(2).replace(".", ",");
+
+      // Define o mês fixo
+      let mes = "setembro";
+
+      // Mostra a mensagem final
+      document.getElementById("resultado").innerText = 
+        `O funcionário ${nome} tem um salário de R$ ${salarioFormatado} em ${mes}.`;
+    }
+  </script>
+</body>
+</html>
